@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
+  "settings": {
+    "cert": "meshcentral-dev.sonderborg.dk",
+    "port": 443,
+    "redirPort": 0,
+    "WANonly": true,
+    "tlsOffload": true,
+    "allowFraming": false,
+    "webRTC": false,
+    "plugins": { "enabled": false },
+    "autoBackup": {
+      "backupIntervalHours": 24,
+      "keepLastDaysBackup": 10
+    }
+  },
+  "domains": {
+    "": {
+      "title": "MeshCentral",
+      "newAccounts": false,
+      "allowedOrigin": false,
+      "certUrl": "https://meshcentral-dev.sonderborg.dk",
+      "minify": true,
+      "localSessionRecording": true
+    }
+  }
+}

@@ -5,6 +5,7 @@ services:
       - .env
     volumes:
       - meshcentral-data:/opt/meshcentral/meshcentral-data
+      - ./config.json:/opt/meshcentral/meshcentral-data/config.json
       - meshcentral-files:/opt/meshcentral/meshcentral-files
       - meshcentral-web:/opt/meshcentral/meshcentral-web
       - meshcentral-backups:/opt/meshcentral/meshcentral-backups
