@@ -8,7 +8,21 @@
     "tlsOffload": true,
     "allowFraming": false,
     "webRTC": false,
-    "plugins": { "enabled": false },
+    "plugins": {
+      "enabled": true,
+      "list": [
+        "ssbconfig"
+      ],
+      "ssbconfig": {
+        "configRepoOwner": "os2borgerpc",
+        "configRepoName": "sikker-selvbetjening-config",
+        "configFilePath": "config/config.json",
+        "schemaRepoOwner": "os2borgerpc",
+        "schemaRepoName": "sikker-selvbetjening",
+        "schemaPath": "schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
+        "targetBranch": "main"
+      }
+    },
     "autoBackup": {
       "backupIntervalHours": 24,
       "keepLastDaysBackup": 10
