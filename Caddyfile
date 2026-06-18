@@ -12,9 +12,7 @@ https://{$HOSTNAME} {
     Permissions-Policy "camera=(), microphone=(), geolocation=()"
   }
 
-  reverse_proxy https://meshcentral:443 {
-    transport http {
-      tls_insecure_skip_verify
-    }
+  reverse_proxy meshcentral:443 {
+    transport http
   }
 }
