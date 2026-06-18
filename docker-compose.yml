@@ -1,0 +1,41 @@
+services:
+  meshcentral:
+    image: ghcr.io/ylianst/meshcentral:latest
+    env_file:
+      - .env
+    volumes:
+      - meshcentral-data:/opt/meshcentral/meshcentral-data
+      - meshcentral-files:/opt/meshcentral/meshcentral-files
+      - meshcentral-web:/opt/meshcentral/meshcentral-web
+      - meshcentral-backups:/opt/meshcentral/meshcentral-backups
+    expose:
+      - "443"
+    healthcheck:
+      test: ["CMD", "curl", "-k", "--fail", "https://localhost:443/health.ashx"]
+      interval: 30s
+      timeout: 5s
+      start_period: 5s
+      retries: 3
+
+  caddy:
+    image: caddy:2
+    depends_on:
+      - meshcentral
+    environment:
+      - HOSTNAME=${HOSTNAME}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./ssl/certs:/etc/caddy/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  meshcentral-data:
+  meshcentral-files:
+  meshcentral-web:
+  meshcentral-backups:
+  caddy-data:
+  caddy-config:

@@ -1,0 +1,26 @@
+# Environment variables (may contain secrets)
+.env
+
+# SSL certificates and private keys
+ssl/certs/
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Caddy auto-managed TLS data
+caddy-data/
+caddy-config/
+
+# Docker override files
+docker-compose.override.yml
+
+# Editor and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
