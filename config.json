@@ -16,10 +16,10 @@
       "ssbconfig": {
         "configRepoOwner": "os2borgerpc",
         "configRepoName": "sikker-selvbetjening-config",
-        "configFilePath": "config/config.json",
+        "configFilePath": "config/config.yml",
         "schemaRepoOwner": "os2borgerpc",
         "schemaRepoName": "sikker-selvbetjening",
-        "schemaPath": "schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
+        "schemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
         "targetBranch": "main"
       }
     },
