@@ -1,8 +1,11 @@
 services:
   meshcentral:
     image: ghcr.io/ylianst/meshcentral:latest
+    restart: unless-stopped
     env_file:
       - .env
+    networks:
+      - meshnet
     volumes:
       - meshcentral-data:/opt/meshcentral/meshcentral-data
       - ./config.json:/opt/meshcentral/meshcentral-data/config.json
@@ -21,18 +24,25 @@ services:
 
   caddy:
     image: caddy:2
+    restart: unless-stopped
     depends_on:
       - meshcentral
     environment:
       - HOSTNAME=${HOSTNAME}
+    networks:
+      - meshnet
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./ssl/certs:/etc/caddy/certs:ro
       - caddy-data:/data
       - caddy-config:/config
+
+networks:
+  meshnet:
+    driver: bridge
 
 volumes:
   meshcentral-data:
