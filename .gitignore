@@ -1,5 +1,7 @@
 # Environment variables (may contain secrets)
 .env
+.env.local
+.env.prod
 
 # SSL certificates and private keys
 ssl/certs/

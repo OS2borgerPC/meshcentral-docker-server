@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
+  "settings": {
+    "cert": "meshcentral-dev.sonderborg.dk",
+    "port": 443,
+    "redirPort": 0,
+    "WANonly": true,
+    "tlsOffload": true,
+    "allowFraming": false,
+    "webRTC": false,
+    "trustedProxy": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16",
+    "agentPort": 443,
+    "agentPing": 60,
+    "plugins": {
+      "enabled": true,
+      "list": [
+        "ssbconfig"
+      ],
+      "ssbconfig": {
+        "configRepoOwner": "os2borgerpc",
+        "configRepoName": "sikker-selvbetjening-config",
+        "configFilePath": "config/config.yml",
+        "schemaRepoOwner": "os2borgerpc",
+        "schemaRepoName": "sikker-selvbetjening",
+        "schemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
+        "targetBranch": "main"
+      }
+    },
+    "autoBackup": {
+      "backupIntervalHours": 24,
+      "keepLastDaysBackup": 10
+    }
+  },
+  "domains": {
+    "": {
+      "title": "MeshCentral",
+      "newAccounts": false,
+      "allowedOrigin": false,
+      "certUrl": "https://meshcentral-dev.sonderborg.dk",
+      "minify": true,
+      "localSessionRecording": true
+    },
+    "demo": {
+      "title": "MeshCentral Demo",
+      "newAccounts": false,
+      "allowedOrigin": false,
+      "minify": true,
+      "localSessionRecording": true
+    }
+  }
+}

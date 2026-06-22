@@ -3,7 +3,7 @@ services:
     image: ghcr.io/ylianst/meshcentral:latest
     restart: unless-stopped
     env_file:
-      - .env
+      - ${RUNTIME_ENV_FILE:-.env}
     networks:
       - meshnet
     volumes:
