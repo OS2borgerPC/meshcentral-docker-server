@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
   "settings": {
-    "cert": "demo.sikkerselvbetjening.org",
+    "cert": "sikkerselvbetjening.org",
     "port": 443,
     "redirPort": 0,
     "WANonly": true,
@@ -36,7 +36,7 @@
       "title": "MeshCentral",
       "newAccounts": false,
       "allowedOrigin": false,
-      "certUrl": "https://demo.sikkerselvbetjening.org",
+      "certUrl": "https://sikkerselvbetjening.org",
       "minify": true,
       "localSessionRecording": true
     },
