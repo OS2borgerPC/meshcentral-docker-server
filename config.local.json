@@ -23,6 +23,7 @@
         "schemaRepoOwner": "os2borgerpc",
         "schemaRepoName": "sikker-selvbetjening",
         "schemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
+        "uiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/uischema.json",
         "targetBranch": "main"
       }
     },
