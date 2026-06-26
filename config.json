@@ -44,6 +44,7 @@
       "title": "MeshCentral Demo",
       "newAccounts": false,
       "allowedOrigin": false,
+      "certUrl": "https://sikkerselvbetjening.org",
       "minify": true,
       "localSessionRecording": true
     }
