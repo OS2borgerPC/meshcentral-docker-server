@@ -5,6 +5,7 @@ services:
       - ./config.local.json:/opt/meshcentral/meshcentral-data/config.json
       - ./plugins:/opt/meshcentral/meshcentral-data/plugins
       - ./custom-ui/menu-plugin-link.js:/opt/meshcentral/meshcentral-web/public/scripts/menu-plugin-link.js:ro
+      - ./custom-ui/OS2_logo_rgb_no_byline_square.png:/opt/meshcentral/meshcentral-web/public/images/os2-plugin-logo.png:ro
       - meshcentral-files:/opt/meshcentral/meshcentral-files
       - meshcentral-web:/opt/meshcentral/meshcentral-web
       - meshcentral-backups:/opt/meshcentral/meshcentral-backups

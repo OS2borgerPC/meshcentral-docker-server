@@ -4,6 +4,7 @@
   var BTN_ID = 'ssbconfig-leftmenu-link';
   var STYLE_ID = 'ssbconfig-leftmenu-style';
   var TARGET_URL = 'pluginadmin.ashx?pin=ssbconfig';
+  var LOGO_URL = 'images/os2-plugin-logo.png';
 
   function findNativePluginEntry() {
     var selectors = [
@@ -68,17 +69,18 @@
     style.id = STYLE_ID;
     style.textContent = [
       '#' + BTN_ID + ' {',
-      '  width: 42px;',
-      '  height: 42px;',
-      '  border-radius: 8px;',
+      '  width: 75px;',
+      '  height: 75px;',
+      '  border-radius: 12px;',
       '  display: flex;',
       '  align-items: center;',
       '  justify-content: center;',
-      '  margin: 8px auto;',
+      '  margin: 5px auto 26px auto;',
       '  text-decoration: none;',
-      '  background: linear-gradient(180deg, #2f80ed 0%, #1c5eb4 100%);',
-      '  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.25);',
+      '  background: #ffffff;',
+      '  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.25);',
       '  transition: transform 120ms ease, filter 120ms ease;',
+      '  overflow: hidden;',
       '}',
       '#' + BTN_ID + ':hover {',
       '  transform: translateY(-1px);',
@@ -87,25 +89,35 @@
       '#' + BTN_ID + ':active {',
       '  transform: translateY(0);',
       '}',
+      '#' + BTN_ID + ' img {',
+      '  width: calc(100% - 10px);',
+      '  height: calc(100% - 10px);',
+      '  object-fit: contain;',
+      '  display: block;',
+      '  margin: 5px;',
+      '  border-radius: 8px;',
+      '  background: #ffffff;',
+      '}',
       '#' + BTN_ID + ' svg {',
-      '  width: 22px;',
-      '  height: 22px;',
-      '  fill: #ffffff;',
+      '  width: 26px;',
+      '  height: 26px;',
+      '  fill: #1c5eb4;',
+      '  display: none;',
+      '}',
+      '#' + BTN_ID + '.logo-failed img {',
+      '  display: none;',
+      '}',
+      '#' + BTN_ID + '.logo-failed svg {',
+      '  display: block;',
       '}',
       '#ssbconfig-leftmenu-fallback {',
       '  position: fixed;',
       '  left: 8px;',
-      '  bottom: 12px;',
+      '  bottom: 40px;',
       '  z-index: 1000;',
       '}',
       '#ssbconfig-leftmenu-fallback #' + BTN_ID + ' {',
       '  margin: 0;',
-      '}',
-      '#ssbconfig-leftmenu-fallback-label {',
-      '  color: #5f6b76;',
-      '  font: 11px/1.1 sans-serif;',
-      '  margin-top: 4px;',
-      '  text-align: center;',
       '}',
       '@media (max-width: 900px) {',
       '  #ssbconfig-leftmenu-fallback {',
@@ -125,9 +137,17 @@
     link.setAttribute('aria-label', 'Open Sikker Selvbetjening Config');
 
     link.innerHTML = '' +
+      '<img alt="" src="' + LOGO_URL + '" />' +
       '<svg viewBox="0 0 24 24" aria-hidden="true">' +
       '<path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>' +
       '</svg>';
+
+    var img = link.querySelector('img');
+    if (img) {
+      img.addEventListener('error', function () {
+        link.classList.add('logo-failed');
+      });
+    }
 
     link.addEventListener('click', openInMeshCentralFrame);
 
@@ -168,11 +188,7 @@
     if (!fallback) {
       fallback = document.createElement('div');
       fallback.id = 'ssbconfig-leftmenu-fallback';
-      var label = document.createElement('div');
-      label.id = 'ssbconfig-leftmenu-fallback-label';
-      label.textContent = 'Config';
       fallback.appendChild(button);
-      fallback.appendChild(label);
       document.body.appendChild(fallback);
     }
   }
