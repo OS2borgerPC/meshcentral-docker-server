@@ -4,6 +4,7 @@ services:
       - meshcentral-data:/opt/meshcentral/meshcentral-data
       - ./config.local.json:/opt/meshcentral/meshcentral-data/config.json
       - ./plugins:/opt/meshcentral/meshcentral-data/plugins
+      - ./custom-ui/menu-plugin-link.js:/opt/meshcentral/meshcentral-web/public/scripts/menu-plugin-link.js:ro
       - meshcentral-files:/opt/meshcentral/meshcentral-files
       - meshcentral-web:/opt/meshcentral/meshcentral-web
       - meshcentral-backups:/opt/meshcentral/meshcentral-backups
