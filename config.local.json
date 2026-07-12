@@ -19,11 +19,16 @@
       "ssbconfig": {
         "configRepoOwner": "os2borgerpc",
         "configRepoName": "sikker-selvbetjening-config",
-        "configFilePath": "config/config.yml",
+        "configsDir": "config",
+        "imageconfigsDir": "imageconfigs",
+        "assetsDir": "assets",
+        "policiesDir": "policies",
         "schemaRepoOwner": "os2borgerpc",
         "schemaRepoName": "sikker-selvbetjening",
-        "schemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/schema.json",
-        "uiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/uischema.json",
+        "policiesSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/policy.json",
+        "policiesUiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/policy.uischema.json",
+        "imageconfigsSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/imageconfig.json",
+        "imageconfigsUiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/imageconfig.uischema.json",     
         "targetBranch": "main"
       }
     },
