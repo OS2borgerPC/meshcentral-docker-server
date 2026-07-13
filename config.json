@@ -25,9 +25,9 @@
         "policiesDir": "policies",
         "schemaRepoOwner": "os2borgerpc",
         "schemaRepoName": "sikker-selvbetjening",
-        "policiesSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/policy.schema.json",
+        "policiesSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/policy.json",
         "policiesUiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/policy.uischema.json",
-        "imageconfigsSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/imageconfig.schema.json",
+        "imageconfigsSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/imageconfig.json",
         "imageconfigsUiSchemaPath": "features/schemas/system_files/usr/share/sikker-selvbetjening/schemas/imageconfig.uischema.json",     
         "targetBranch": "main"
       }
