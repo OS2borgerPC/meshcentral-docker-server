@@ -11,6 +11,7 @@
     "trustedProxy": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16",
     "agentPort": 443,
     "agentPing": 60,
+    "debug": "plugin:ssbconfig",
     "plugins": {
       "enabled": true,
       "list": [
