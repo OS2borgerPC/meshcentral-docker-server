@@ -3,7 +3,7 @@
 
   var BTN_ID = 'ssbconfig-leftmenu-link';
   var STYLE_ID = 'ssbconfig-leftmenu-style';
-  var TARGET_URL = 'pluginadmin.ashx?pin=ssbconfig';
+  var TARGET_URL = './pluginadmin.ashx?pin=ssbconfig&user=1';
   var LOGO_URL = 'images/os2-plugin-logo.png';
 
   function findNativePluginEntry() {
@@ -32,34 +32,7 @@
       evt.preventDefault();
       evt.stopPropagation();
     }
-
-    var nativeEntry = findNativePluginEntry();
-    if (nativeEntry) {
-      try {
-        nativeEntry.dispatchEvent(new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        }));
-        return;
-      } catch (e) {
-        // Fall back below.
-      }
-
-      if (typeof nativeEntry.click === 'function') {
-        nativeEntry.click();
-        return;
-      }
-
-      if (nativeEntry.getAttribute) {
-        var href = nativeEntry.getAttribute('href');
-        if (href && href !== '#' && href.indexOf('javascript:') !== 0) {
-          window.location.assign(href);
-          return;
-        }
-      }
-    }
-
+    // Navigate directly to avoid brittle native-menu click delegation.
     window.location.assign(TARGET_URL);
   }
 
