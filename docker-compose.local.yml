@@ -1,5 +1,7 @@
 services:
   meshcentral:
+    extra_hosts:
+      - "meshcentral-dev.sonderborg.dk:host-gateway"
     volumes:
       - meshcentral-data:/opt/meshcentral/meshcentral-data
       - ./config.local.json:/opt/meshcentral/meshcentral-data/config.json
