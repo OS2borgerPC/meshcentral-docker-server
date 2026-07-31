@@ -1,4 +1,4 @@
-FROM fedora-minimal:42
+FROM registry.fedoraproject.org/fedora-minimal:42
 
 RUN microdnf install -y \
         butane \
