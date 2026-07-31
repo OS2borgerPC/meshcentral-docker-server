@@ -24,6 +24,13 @@ services:
       start_period: 300s
       retries: 10
 
+  iso-builder:
+    build: ./iso-builder
+    restart: unless-stopped
+    volumes:
+      - meshcentral-files:/data
+      - fcos-cache:/cache
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -50,6 +57,7 @@ networks:
 volumes:
   meshcentral-data:
   meshcentral-files:
+  fcos-cache:
   meshcentral-web:
   meshcentral-backups:
   caddy-data:
