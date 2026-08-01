@@ -1,34 +1,16 @@
 {
-  "_doc": "Copy this file to a directory inside the meshcentral-files volume alongside a config.bu file. Rename it to build-status.json.",
-
-  "_settings": "--- USER-CONTROLLED FIELDS ---",
-
-  "ready": false,
-  "_ready": "Set to true to trigger a build. The builder immediately flips this back to false when it picks up the job, so you must set it to true again for each new build.",
-
-  "dest_device": "/dev/sda",
-  "_dest_device": "Optional block device the FCOS installer will target on the machine that boots this ISO. If omitted or empty, the ISO will not be configured for unattended installation and the installer will remain interactive.",
-
-  "auto_rebuild_on_fcos_update": false,
-  "_auto_rebuild_on_fcos_update": "Set to true if this ISO should be rebuilt automatically whenever a new FCOS version is downloaded. The builder sets ready=true on your behalf; no manual action needed.",
-
+  "_doc": "Example runtime status file for the ISO builder. This file is updated by the watcher.",
   "_status": "--- BUILD PROCESS FIELDS (written by the builder, do not edit) ---",
-
   "status": "idle",
   "_status_values": "idle | processing | done | failed",
-
   "started": null,
   "_started": "ISO 8601 timestamp of when the current or last build started.",
-
   "finished": null,
   "_finished": "ISO 8601 timestamp of when the last build completed (successfully or not).",
-
   "source_hash": null,
-  "_source_hash": "SHA-256 of the config.bu file used for the last build. The builder uses this to detect whether config.bu has changed since the last successful build.",
-
+  "_source_hash": "SHA-256 of the x86_64/x86_64.bu file used for the last build. The builder uses this to detect whether the source has changed since the last successful build.",
   "fcos_version": null,
   "_fcos_version": "The FCOS version string (e.g. 42.20250601.3.0) of the base ISO used for the last build.",
-
   "error": null,
   "_error": "Human-readable failure reason. Only present when status is failed. See build.log in the same directory for full output."
 }
