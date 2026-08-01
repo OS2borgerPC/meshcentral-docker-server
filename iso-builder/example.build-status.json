@@ -7,7 +7,7 @@
   "_ready": "Set to true to trigger a build. The builder immediately flips this back to false when it picks up the job, so you must set it to true again for each new build.",
 
   "dest_device": "/dev/sda",
-  "_dest_device": "The block device the FCOS installer will target on the machine that boots this ISO. Defaults to /dev/sda if omitted.",
+  "_dest_device": "Optional block device the FCOS installer will target on the machine that boots this ISO. If omitted or empty, the ISO will not be configured for unattended installation and the installer will remain interactive.",
 
   "auto_rebuild_on_fcos_update": false,
   "_auto_rebuild_on_fcos_update": "Set to true if this ISO should be rebuilt automatically whenever a new FCOS version is downloaded. The builder sets ready=true on your behalf; no manual action needed.",

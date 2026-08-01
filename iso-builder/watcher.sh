@@ -122,18 +122,28 @@ build_iso() {
     log "Using FCOS $fcos_version ($iso)"
 
     # Step 3: Customize ISO
-    # dest_device can be overridden per-manifest; defaults to /dev/sda
     local dest_device
-    dest_device=$(jq -r '.dest_device // "/dev/sda"' "$manifest")
-    log "Step 3/3: Customizing ISO (dest-device: $dest_device)..."
+    dest_device=$(jq -r '.dest_device // empty' "$manifest")
     rm -f "$dir/custom.iso"
-    if ! coreos-installer iso customize \
-            --dest-ignition "$dir/config.ign" \
-            --dest-device "$dest_device" \
-            --output "$dir/custom.iso" \
-            "$iso"; then
-        mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
-        return 1
+    if [[ -n "$dest_device" ]]; then
+        log "Step 3/3: Customizing ISO (dest-device: $dest_device)..."
+        if ! coreos-installer iso customize \
+                --dest-ignition "$dir/config.ign" \
+                --dest-device "$dest_device" \
+                --output "$dir/custom.iso" \
+                "$iso"; then
+            mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
+            return 1
+        fi
+    else
+        log "Step 3/3: Customizing ISO (no dest-device specified; leaving installer interactive)..."
+        if ! coreos-installer iso customize \
+                --dest-ignition "$dir/config.ign" \
+                --output "$dir/custom.iso" \
+                "$iso"; then
+            mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
+            return 1
+        fi
     fi
 
     # Success
