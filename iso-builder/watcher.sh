@@ -126,7 +126,7 @@ build_iso() {
     local dir
     dir=$(dirname "$manifest")
 
-    local source_file="$dir/x86_64/x86_64.bu"
+    local source_file="$dir/x86_64.bu"
     local ignition_file="$dir/x86_64.ign"
     local custom_iso="$dir/coreos_custom_x86_64.iso"
 
@@ -203,23 +203,24 @@ log "ISO builder started. Scanning '$SCAN_ROOT' every ${INTERVAL}s."
 while true; do
     check_fcos_update || log "FCOS update check failed (non-fatal)"
 
-    while IFS= read -r manifest; do
+    while IFS= read -r dir; do
+        [[ -f "$dir/x86_64.bu" ]] || continue
+
+        manifest="$dir/build-status.json"
+        if [[ ! -f "$manifest" ]]; then
+            printf '{"status":"idle"}\n' > "$manifest"
+        fi
+
         ready=$(read_manifest_setting "$manifest" "ready" "false") || continue
         [[ "$ready" != "true" ]] && continue
 
         status=$(jq -r '.status // "idle"' "$manifest" 2>/dev/null) || continue
         [[ "$status" == "processing" ]] && continue
 
-        dir=$(dirname "$manifest")
-        if [[ ! -f "$dir/x86_64/x86_64.bu" ]]; then
-            log "Warning: ready=true but no x86_64/x86_64.bu found in $dir"
-            continue
-        fi
-
         # Run build; tee all output (stdout + stderr) to build.log in the same directory
         build_iso "$manifest" 2>&1 | tee "$dir/build.log" || true
 
-    done < <(find "$SCAN_ROOT" -name "build-status.json" 2>/dev/null)
+    done < <(find "$SCAN_ROOT" -type d 2>/dev/null)
 
     sleep "$INTERVAL"
 done
