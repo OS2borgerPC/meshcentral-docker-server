@@ -108,7 +108,7 @@ check_fcos_update() {
         fi
         write_manifest_setting "$manifest" "ready" "true"
         log "Queued auto-rebuild: $(dirname "$manifest")"
-    done < <(find "$SCAN_ROOT" -name "build-status.json" 2>/dev/null)
+    done < <(find "$SCAN_ROOT" -path '*/x86_64/build-status.json' 2>/dev/null)
 }
 
 mark_failed() {
@@ -204,9 +204,9 @@ while true; do
     check_fcos_update || log "FCOS update check failed (non-fatal)"
 
     while IFS= read -r dir; do
-        [[ -f "$dir/x86_64.bu" ]] || continue
+        [[ -f "$dir/x86_64/x86_64.bu" ]] || continue
 
-        manifest="$dir/build-status.json"
+        manifest="$dir/x86_64/build-status.json"
         if [[ ! -f "$manifest" ]]; then
             printf '{"status":"idle"}\n' > "$manifest"
         fi
@@ -218,7 +218,7 @@ while true; do
         [[ "$status" == "processing" ]] && continue
 
         # Run build; tee all output (stdout + stderr) to build.log in the same directory
-        build_iso "$manifest" 2>&1 | tee "$dir/build.log" || true
+        build_iso "$manifest" 2>&1 | tee "$dir/x86_64/build.log" || true
 
     done < <(find "$SCAN_ROOT" -type d 2>/dev/null)
 
