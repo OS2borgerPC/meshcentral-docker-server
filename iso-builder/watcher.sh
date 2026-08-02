@@ -7,8 +7,8 @@ INTERVAL="${INTERVAL:-300}"
 FCOS_STREAM="${FCOS_STREAM:-stable}"
 FCOS_PLATFORM="${FCOS_PLATFORM:-metal}"
 
-log()    { echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] $*"; }
-now_ts() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
+log()    { echo "[$(TZ=Europe/Copenhagen date +"%Y-%m-%dT%H:%M:%S%z")] $*"; }
+now_ts() { TZ=Europe/Copenhagen date +"%Y-%m-%dT%H:%M:%S%z"; }
 
 read_manifest_setting() {
     local manifest="$1"
