@@ -164,26 +164,20 @@ build_iso() {
     # Step 3: Customize ISO
     local dest_device
     dest_device=$(read_manifest_setting "$manifest" "dest_device" "")
+    if [[ -z "$dest_device" ]]; then
+        mark_failed "$manifest" "$source_hash" "$fcos_version" "dest_device is required"
+        return 1
+    fi
+
     rm -f "$custom_iso"
-    if [[ -n "$dest_device" ]]; then
-        log "Step 3/3: Customizing ISO (dest-device: $dest_device)..."
-        if ! coreos-installer iso customize \
-                --dest-ignition "$ignition_file" \
-                --dest-device "$dest_device" \
-                --output "$custom_iso" \
-                "$iso"; then
-            mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
-            return 1
-        fi
-    else
-        log "Step 3/3: Customizing ISO (no dest-device specified; leaving installer interactive)..."
-        if ! coreos-installer iso customize \
-                --dest-ignition "$ignition_file" \
-                --output "$custom_iso" \
-                "$iso"; then
-            mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
-            return 1
-        fi
+    log "Step 3/3: Customizing ISO (dest-device: $dest_device)..."
+    if ! coreos-installer iso customize \
+            --dest-ignition "$ignition_file" \
+            --dest-device "$dest_device" \
+            --output "$custom_iso" \
+            "$iso"; then
+        mark_failed "$manifest" "$source_hash" "$fcos_version" "coreos-installer iso customize failed"
+        return 1
     fi
 
     # Success

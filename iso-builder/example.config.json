@@ -3,7 +3,7 @@
   "ready": false,
   "_ready": "Set to true to trigger a build. The watcher resets this to false when it starts the job.",
   "dest_device": "/dev/sda",
-  "_dest_device": "Optional block device for unattended installation. Leave empty to keep the installer interactive.",
+  "_dest_device": "Required block device for unattended installation.",
   "auto_rebuild_on_fcos_update": false,
   "_auto_rebuild_on_fcos_update": "Set to true to rebuild automatically when a newer FCOS ISO is detected."
 }
